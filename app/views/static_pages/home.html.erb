@@ -1,3 +1,58 @@
 <h1>Welcome to Wrapped Reviews</h1>
-<h2> Home | About Us | Write a Review | Hot Products | Best Of </h2> 
+<h2> Home | About Us | <a href="reviews/new"> Write a Review </a href> | <a href="products/new"> Add a Product </a href> | Hot Products | Best Of </h2> 
 <p>Newest Reviews:</p>
+<table>
+  <thead>
+    <tr>
+      <th>USB</th>
+	<th> Content </th>
+	<th> Created At </th>
+	<th> Show </th>
+	<th> Destroy </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @review.each do |review| %>
+      <tr>
+        <td><%= review.usb %></td> 
+        <td><%= review.content %></td>
+		<td><%= review.created_at %></td>
+		<td><%= link_to 'Show', review %> </td>
+		<td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
+
+<p>Newest Products:</p>
+<table>
+  <thead>
+    <tr>
+      <th>USB</th>
+	<th> Name </th>
+	<th> Brand </th>
+	<th> Created At </th>
+	<th> Show </th>
+	<th> Destroy </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product.each do |product| %>
+      <tr>
+        <td><%= product.usb %></td> 
+        <td><%= product.name %></td>
+	 <td><%= product.brand %></td>
+		<td><%= product.created_at %></td>
+		<td><%= link_to 'Show', product %> </td>
+		<td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

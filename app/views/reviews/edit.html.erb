@@ -1,13 +1,13 @@
 <h1>Sign up</h1>
 
-
-
-    <%= form_for(@review) do |r| %>
+<%= form_for(@review) do |r| %>
       <%= r.label :usb %>
       <%= r.text_field :usb %>
 	  <br>
 	  <%= r.label :content %>
 	  <%= r.text_area :content, :rows=>"10" %>
-
+	
       <%= r.submit "Submit Review", class: "btn btn-primary" %>
     <% end %>
+<%= link_to 'Show', @review %> |
+<%= link_to 'Back', reviews_path %>

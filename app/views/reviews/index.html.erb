@@ -1,0 +1,35 @@
+<div class='container'>
+<div class='center jumbotron'>
+<h1>Listing reviews</h1>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>USB</th>
+	<th> Content </th>
+	<th> Created At </th>
+	<th> Show </th>
+	<th> Destroy </th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @review.each do |review| %>
+      <tr>
+        <td><%= review.usb %></td> 
+        <td><%= review.content %></td>
+		<td><%= review.created_at %></td>
+		<td><%= link_to 'Show', review %> </td>
+		<td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Review', new_review_path %>
+
+</div>
+

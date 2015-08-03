@@ -1,16 +1,11 @@
-<h1>Sign up</h1>
-
-
-
     <%= form_for(@product) do |r| %>
       <%= r.label :usb %>
       <%= r.text_field :usb %>
 	  <br>
 	  <%= r.label :name %>
 	  <%= r.text_field :name %>
-	  	  <br>
+	  <br>
 	  <%= r.label :brand %>
 	  <%= r.text_field :brand %>
-
       <%= r.submit "Submit product", class: "btn btn-primary" %>
     <% end %>
