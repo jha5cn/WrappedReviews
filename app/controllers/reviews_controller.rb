@@ -5,6 +5,12 @@ class ReviewsController < ApplicationController
 	def index
 		@review = Review.all
 	end
+	
+	def mostRecentReviews
+		@review = Review.last(params[:count]).reverse
+		render json: @review
+	end
+	
   def new
 	   @review = Review.new
   end
@@ -62,7 +68,7 @@ class ReviewsController < ApplicationController
 	
      # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:review).permit(:usb, :content)
+      params.require(:review).permit(:usb, :content, :product_id)
     end
 	
 	

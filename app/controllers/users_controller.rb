@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  def new
+  def register
+	@user = User.create(:name => params[:nameInput], :password => params[:passwordInput])
   end
 
   def index

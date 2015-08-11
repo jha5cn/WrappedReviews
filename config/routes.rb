@@ -5,8 +5,12 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
-  get 'users/new'
-
+  get 'users/register/:nameInput/:password' => 'users#register'
+	get 'products/:id/reviews' => 'products#reviews'
+	get 'products/:id/createreview' => 'products#createReview'
+	get 'reviews/mostrecent/:count' => 'reviews#mostRecentReviews'
+	get 'products/mostrecent/:count' => 'products#mostRecentProducts'
+	get 'products/create/:usbInput/:nameInput/:brandInput' => 'products#create'
   root 'static_pages#home'
   
   resources :users

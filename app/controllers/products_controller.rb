@@ -4,28 +4,54 @@ class ProductsController < ApplicationController
 
 	def index
 		@product = Product.all
+		@product = render json: @product
 	end
+	
   def new
 	   @product = Product.new
   end
   
-   def create
-    @product = Product.new(user_params)
+  # def create
+  #  @product = Product.new(user_params)
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
-    end
+#    respond_to do |format|
+ #     if @product.save
+  #      format.html { redirect_to @product, notice: 'product was successfully created.' }
+   #     format.json { render :show, status: :created, location: @product }
+    #  else
+    #    format.html { render :new }
+    #    format.json { render json: @product.errors, status: :unprocessable_entity }
+    #  end
+   # end
+  #end
+  
+  def create
+	@product = Product.create(:usb => params[:usbInput], :name => params[:nameInput], :brand => params[:brandInput])
+	respond_to do |format|
+    if @product.save
+      format.html { redirect_to @product, notice: 'product was successfully created.' }
+     format.json { render :show, status: :created, location: @product }
+  else
+    format.html { render :new }
+    format.json { render json: @product.errors, status: :unprocessable_entity }
+  end
+ end
   end
   
     def show
       @product = Product.find(params[:id])
-	  @relatedReviews = @product.reviews
+	  render json: @product
+  end
+  
+  def reviews
+	@product = Product.find(params[:id])
+	@relatedReviews = @product.reviews
+	render json: @relatedReviews
+  end
+  
+  def createReview
+	@product = Product.find(params[:id])
+	@relatedReviews = @product.reviews.create
   end
   
     def update
@@ -54,6 +80,11 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  	def mostRecentProducts
+		@product = Product.last(params[:count]).reverse
+		render json: @product
+	end
   
    private
     # Use callbacks to share common setup or constraints between actions.

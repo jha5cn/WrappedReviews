@@ -4,6 +4,9 @@
 	  <br>
 	  <%= r.label :content %>
 	  <%= r.text_area :content, :rows=>"10" %>
+	  <br>
+	  <%= r.label :product_id %>
+      <%= r.text_field :product_id %>
 
       <%= r.submit "Submit Review", class: "btn btn-primary" %>
     <% end %>
