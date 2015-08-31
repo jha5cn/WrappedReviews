@@ -25,6 +25,11 @@ class ProductsController < ApplicationController
    # end
   #end
   
+  def search
+	@products = Product.search(params[:search])
+	render json: @products
+  end
+  
   def create
 	@product = Product.create(:usb => params[:usbInput], :name => params[:nameInput], :brand => params[:brandInput])
 	respond_to do |format|

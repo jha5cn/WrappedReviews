@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 	get 'reviews/mostrecent/:count' => 'reviews#mostRecentReviews'
 	get 'products/mostrecent/:count' => 'products#mostRecentProducts'
 	get 'products/create/:usbInput/:nameInput/:brandInput' => 'products#create'
+	get 'products/search/:search' => 'products#search'
   root 'static_pages#home'
   
   resources :users
